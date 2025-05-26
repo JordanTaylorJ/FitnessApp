@@ -14,6 +14,20 @@ const IntenseWorkoutPlans = [
 
 ];
 
+const BeginnerPlans = [
+  { id: '2', title: 'Circuit Training', description: '5 minutes of circuit training', duration: '20 min', imageUrl: 'https://images.unsplash.com/photo-1534258936925-c58bed479fcb?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8Y2lyY3VpdCUyMHRyYWluaW5nfGVufDB8fDB8fHwy' },
+  { id: '1', title: 'Zumba Class', description: '10 minutes of zumba classes', duration: '30 min', imageUrl: 'https://images.unsplash.com/photo-1524594152303-9fd13543fe6e?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D' },
+  { id: '3', title: 'Pilate Training', description: '40 minutes of pilate training', duration: '20 min', imageUrl: 'https://images.unsplash.com/photo-1620134280013-e756c46affc6?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D' },  
+
+];
+
+const IntermediatePlans = [
+  { id: '3', title: 'Pilate Training', description: '45 minutes of pilate training', duration: '20 min', imageUrl: 'https://images.unsplash.com/photo-1620134280013-e756c46affc6?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D' },
+  { id: '1', title: 'Zumba Class', description: '20 minutes of zumba classes', duration: '30 min', imageUrl: 'https://images.unsplash.com/photo-1524594152303-9fd13543fe6e?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D' },
+  { id: '2', title: 'Circuit Training', description: '10 minutes of circuit training', duration: '20 min', imageUrl: 'https://images.unsplash.com/photo-1534258936925-c58bed479fcb?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8Y2lyY3VpdCUyMHRyYWluaW5nfGVufDB8fDB8fHwy' },
+  
+];
+
 export default function FitnessWorld() {
 
   const renderWorkout = ({item}) => (
@@ -21,7 +35,7 @@ export default function FitnessWorld() {
       <Image source={{uri: item.imageUrl}} style={styles.workoutImage}/>
       <Text style={styles.workoutTitle}>{item.title}</Text>
       <Text style={styles.workoutDescp}>{item.description}</Text>
-      <Text style={styles.workoutDescp} testID='workoutDescp'>Duration: {item.duration};</Text>
+      <Text style={styles.workoutDescp} testID='workoutDescp'>Duration: {item.duration}</Text>
       <TouchableOpacity style={styles.joinButton} onPress={() => alert(`Joined ${item.title}`)}>
         <Text style={styles.buttonText}>Join Now</Text>
       </TouchableOpacity>
@@ -32,7 +46,7 @@ export default function FitnessWorld() {
     <ScrollView style={styles.container}>
       <View style={styles.section}>
         <Text style={styles.header}>Start Your Fitness Journey</Text>
-        <Text style={styles.workoutDescp}>Welcome to join fitness journey, where every rep brings you closer to your best self. Let’s crush your fitness goals together!</Text>
+        <Text style={styles.headerSum}>Welcome to join fitness journey, where every rep brings you closer to your best self. Lets crush your fitness goals together!</Text>
         <Text style={styles.headerbenefit}>Benefits of Our Fitness Programs</Text>
         <Text style={styles.text}>• Build muscle strength</Text>
         <Text style={styles.text}>• Improve cardiovascular health</Text>
@@ -87,6 +101,28 @@ export default function FitnessWorld() {
           showsHorizontalScrollIndicator={false}
         />
       </View>
+
+      <View style={styles.section}>
+        <Text style={styles.header}>Intermediate Workout Plans</Text>
+        <FlatList
+          data={IntermediatePlans}
+          renderItem={renderWorkout}
+          keyExtractor={(item) => item.id}
+          horizontal={true}
+          showsHorizontalScrollIndicator={false}
+        />
+      </View>
+
+      <View style={styles.section}>
+        <Text style={styles.header}>Beginner Workout Plans</Text>
+        <FlatList
+          data={BeginnerPlans}
+          renderItem={renderWorkout}
+          keyExtractor={(item) => item.id}
+          horizontal={true}
+          showsHorizontalScrollIndicator={false}
+        />
+      </View>
       
     </ScrollView>
   );
@@ -107,6 +143,12 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     color: '#ff7f00', 
   },
+   headerSum:{
+    fontSize: 16,
+    fontWeight: 'bold',
+    marginBottom: 10,
+    color:'white'
+  },
   headerbenefit:{
     fontSize: 24,
     fontWeight: 'bold',
@@ -119,7 +161,8 @@ const styles = StyleSheet.create({
     color: '#fff',
   },
   workoutDescp:{
-  textAlign:'center'
+    textAlign:'center',
+    color: '#4caf50',
   },
   trainingTypeCard: {
     marginRight: 20,
